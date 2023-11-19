@@ -4,8 +4,12 @@
   <title>Rock, paper, scissors</title>
   <style>
     body {
-      background-image: linear-gradient(#1E2853, #351e53);
+      background-image: linear-gradient(#1E2853, #2e1e53);
       font-family: Arial, Helvetica, sans-serif;
+      height: 100%;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     .top-container {
@@ -70,6 +74,7 @@
       color: #1E2853;
       font-weight: bold;
       font-size: 16px;
+      cursor: pointer;
     }
 
     .title-container p {
@@ -102,6 +107,55 @@
     .scissors {
       border: rgb(255, 183, 74) solid 20px;
     }
+
+    .main-container {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      /* display: none; */
+    }
+
+    .result-container {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .result {
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .moves {
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .moves-icon {
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 10px;
+      border: none;
+      width: 100px;
+      margin: 10px;
+    }
+
+    .win-color {
+      border: rgb(110, 255, 74) solid 20px;
+    }
+
+    .lose-color {
+      border: rgb(255, 74, 74) solid 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -119,28 +173,34 @@
           <p class="score">0</p>
         </section>
 
-        <button class="reset-button" onClick="resetGame()">RESET</button>
+        <button class="reset-button" onClick="resetGame()">RESET SCORE</button>
       </div>
       
     </div>
   </div>
   
+  <div class="main-container">
+    <button class="moves-button paper" onClick="
+      playGame('Papier');
+    "><img src="images/Papier.png"></button>
+
+    <button class="moves-button rock" onClick="
+      playGame('Kamien');
+    "><img src="images/Kamien.png"></button>
+
+    <button class="moves-button scissors" onClick="
+      playGame('Nozyce');
+    "><img src="images/Nozyce.png"></button>
+  </div>
+
+  <div class="result-container">
+    <p class="result">Przegrałeś</p>
+
+    <p class="moves">Twoj ruch</p>
+  </div>
   
-  <button class="moves-button paper" onClick="
-    playGame('Papier');
-  "><img src="images/Papier.png"></button>
 
-  <button class="moves-button rock" onClick="
-    playGame('Kamien');
-  "><img src="images/Kamien.png"></button>
-
-  <button class="moves-button scissors" onClick="
-    playGame('Nozyce');
-  "><img src="images/Nozyce.png"></button>
-
-  <p class="result"></p>
-
-  <p class="moves"></p>
+  
 
   <script>
     function resetGame() {
@@ -201,7 +261,8 @@
       
       document.querySelector('.result').innerHTML = result;
 
-      document.querySelector('.moves').innerHTML = `Twój ruch ${playerMove} - ${computerMove} ruch komputera`;
+      document.querySelector('.moves').innerHTML = `<img class="moves-icon" src="images/${playerMove}.png"><img class="moves-icon" src="images/${computerMove}.png">`;
+
     }
 
     let computerMove;
