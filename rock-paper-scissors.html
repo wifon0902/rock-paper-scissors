@@ -87,13 +87,13 @@
     .moves-button {
       background-color: #fff;
       border-radius: 50%;
-      padding: 10px;
+      padding: 20px;
       cursor: pointer;
       border: none;
     }
 
     .moves-button > img {
-      height: 100px;
+      height: 90px;
     }
 
     .rock {
@@ -115,7 +115,6 @@
       justify-content: center;
       align-items: center;
       gap: 50px;
-      /* display: none; */
     }
 
     .result-container {
@@ -145,15 +144,18 @@
       padding: 10px;
       border: none;
       width: 100px;
-      margin: 10px;
+      margin: 0 10px 0 10px;
     }
 
-    .win-color {
-      border: rgb(110, 255, 74) solid 20px;
-    }
-
-    .lose-color {
-      border: rgb(255, 74, 74) solid 20px;
+    .result-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 35%;
+      min-height: 300px;
+      margin-top: 50px;
+      border-radius: 30px;
     }
 
   </style>
@@ -173,7 +175,7 @@
           <p class="score">0</p>
         </section>
 
-        <button class="reset-button" onClick="resetGame()">RESET SCORE</button>
+        <button class="reset-button" onClick="resetGame()">RESET GAME</button>
       </div>
       
     </div>
@@ -194,14 +196,12 @@
   </div>
 
   <div class="result-container">
-    <p class="result">Przegrałeś</p>
-
-    <p class="moves">Twoj ruch</p>
+    <div class="result-box">
+      <p class="result"></p>
+      <p class="moves"></p>
+    </div>
   </div>
   
-
-  
-
   <script>
     function resetGame() {
       score.wins = 0;
@@ -209,6 +209,8 @@
       refreshScore();
       document.querySelector('.result').innerHTML = '';
       document.querySelector('.moves').innerHTML = '';
+      document.querySelector('.result-box').style.backgroundColor = '';
+      document.querySelector('.result-box').style.border = '';
     }
 
     function refreshScore() {
@@ -263,6 +265,18 @@
 
       document.querySelector('.moves').innerHTML = `<img class="moves-icon" src="images/${playerMove}.png"><img class="moves-icon" src="images/${computerMove}.png">`;
 
+      const colorContainer = document.querySelector('.result-box');
+
+      if (result === "Wygrales") {
+        colorContainer.style.backgroundColor = "rgb(110, 255, 74, 0.25)";
+        colorContainer.style.border = "rgb(82, 182, 57) solid 3px";
+      } else if (result === "Przegrales") {
+        colorContainer.style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+        colorContainer.style.border = "rgb(255, 74, 74) solid 3px";
+      } else if (result === "Remis") {
+        colorContainer.style.backgroundColor = "rgb(74, 122, 255, 0.25)";
+        colorContainer.style.border = "rgb(74, 122, 255) solid 3px";
+      }
     }
 
     let computerMove;
