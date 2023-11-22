@@ -228,33 +228,33 @@
 
       if (playerMove === 'Nozyce') {
         if (computerMove === 'Papier') {
-          result = 'Wygrales';
+          result = 'You win';
         } else if (computerMove === 'Kamien') {
-          result = 'Przegrales';
+          result = 'You lose';
         } else if (computerMove === 'Nozyce') {
-          result = 'Remis';
+          result = 'Tie';
         }
 
       } else if (playerMove === 'Kamien') {
         if (computerMove === 'Papier') {
-          result = 'Przegrales';
+          result = 'You lose';
         } else if (computerMove === 'Kamien') {
-          result = 'Remis';
+          result = 'Tie';
         } else if (computerMove === 'Nozyce') {
-          result = 'Wygrales';
+          result = 'You win';
         }
         
       } else if (playerMove === 'Papier') {
         if (computerMove === 'Papier') {
-          result = 'Remis';
+          result = 'Tie';
         } else if (computerMove === 'Kamien') {
-          result = 'Wygrales';
+          result = 'You win';
         } else if (computerMove === 'Nozyce') {
-          result = 'Przegrales';
+          result = 'You lose';
         }
       }
       
-      if (result === "Wygrales") {
+      if (result === "You win") {
         score.wins += 1;
       }
 
@@ -268,13 +268,13 @@
 
       const colorContainer = document.querySelector('.result-box');
 
-      if (result === "Wygrales") {
+      if (result === "You win") {
         colorContainer.style.backgroundColor = "rgb(110, 255, 74, 0.25)";
         colorContainer.style.border = "rgb(82, 182, 57) solid 3px";
-      } else if (result === "Przegrales") {
+      } else if (result === "You lose") {
         colorContainer.style.backgroundColor = "rgba(255, 0, 0, 0.25)";
         colorContainer.style.border = "rgb(255, 74, 74) solid 3px";
-      } else if (result === "Remis") {
+      } else if (result === "Tie") {
         colorContainer.style.backgroundColor = "rgb(74, 122, 255, 0.25)";
         colorContainer.style.border = "rgb(74, 122, 255) solid 3px";
       }
