@@ -20,6 +20,7 @@
         </section>
 
         <button class="reset-button" onClick="resetGame()">RESET GAME</button>
+        <button class="reset-button autoplay-button" onClick="autoPlay()">AUTO PLAY</button>
       </div>
       
     </div>
@@ -47,6 +48,26 @@
   </div>
   
   <script>
+    let isAutoPlaying = false;
+    let intervalId;
+    const buttonText = document.querySelector('.autoplay-button');
+
+    function autoPlay() {
+      if(!isAutoPlaying) {
+        intervalId = setInterval(function() {
+          let playerMove = pickComputerMove();
+          playGame(playerMove);
+        }, 1000);
+        buttonText.innerHTML = 'STOP AUTO';
+        isAutoPlaying = true;
+      } else {
+        clearInterval(intervalId);
+        isAutoPlaying = false;
+        buttonText.innerHTML = 'AUTO PLAY';
+      }
+      
+    }
+
     function resetGame() {
       score.wins = 0;
       localStorage.removeItem('score');
@@ -136,6 +157,7 @@
       else if (random >= 2/3 && random < 1) {
         computerMove = 'Nozyce';
       }
+      return computerMove;
     }
 
     refreshScore();
